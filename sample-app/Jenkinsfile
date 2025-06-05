@@ -14,8 +14,10 @@ pipeline {
 
         stage('Build') {
             steps {
+                dir('sample-app') {
                 sh 'mvn clean package -DskipTests=false'
-            }
+                }
+            }   
         }
 
         stage('Docker Build') {
