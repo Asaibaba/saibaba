@@ -13,19 +13,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'echo "Building the code..."'
+                sh 'echo "Building the code... tesing now"'
                 // Example: mvn clean install or npm install
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Running tests..."'
+                sh 'echo "Running tests...tesing now"'
                 // Example: mvn test or npm test
             }
         }
         stage('Package') {
             steps {
-                sh 'echo "Packaging..."'
+                sh 'echo "Packaging...tesing now"'
                 // Example: docker build -t yourimage .
             }
         }
