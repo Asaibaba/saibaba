@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_REPO = 'https://github.com/youruser/yourrepo.git'
+        GIT_REPO = 'https://github.com/Asaibaba/saibaba.git'
     }
 
     stages {
