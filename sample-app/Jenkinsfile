@@ -25,7 +25,9 @@ pipeline {
 
         stage('Docker Build') {
             steps {
+                dir('sample-app') {
                 sh 'docker build -t $IMAGE_NAME .'
+                }
             }
         }
 
@@ -39,7 +41,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
-            sh 'docker rm -f demo-container || true'
+            sh 'docker rm -f demo-1container || true'
         }
     }
 }
