@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    
+    tools {
+        maven 'mvn-3.9.9'  // This name must match exactly from Global Tool Configuration
+    }
     environment {
         IMAGE_NAME = "demo-app"
     }
