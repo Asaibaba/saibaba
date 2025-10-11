@@ -3,6 +3,37 @@ pipeline {
     
     tools {
         maven 'mvn-3.9.9'  // This name must match exactly from Global Tool Configuration
+        jdk 'JDK17'
+    }
+    
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Asaibaba/saibaba.git', branch: 'main'
+            }
+        }
+        stage('Build') {
+            steps {
+                dir('sample-app') {
+                sh 'mvn clean package'
+                }
+            }
+        }
+        stage('Upload to Nexus') {
+            steps {
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'https',
+                    nexusUrl: 'nexus.example.com',
+                    groupId: 'com.example',
+                    version: '1.0.0',
+                    repository: 'maven-releases',
+                    credentialsId: 'nexus-creds',
+                    artifacts: [[artifactId: 'hello-jenkins', file: 'target/hello-jenkins-1.0.0.jar', type: 'jar']]
+                )
+            }
+        }
     }
     environment {
         IMAGE_NAME = "demo-app"
@@ -33,7 +64,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8080 --name demo-container $IMAGE_NAME'
+                sh 'docker run -d -p 8083:8080 --name demo-container $IMAGE_NAME'
             }
         }
     }
