@@ -25,7 +25,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <distributionManagement>
+      <repository>
+        <id>nexus</id>
+        <url>http://testvm-11.fyre.ibm.com:8081/repository/maven-releases/</url>
+      </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -35,4 +40,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>
